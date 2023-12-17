@@ -1,17 +1,4 @@
-const mongoose = require('mongoose')
-
-const url = process.env.MONGODB_URI
-
-console.log('connecting to....', url)
-
-mongoose.set('strictQuery', false)
-mongoose.connect(url)
-    .then(result => {
-        console.log('connected to MongoDB !!!')
-    })
-    .catch((error) => {
-        console.log('error connecting to MongoDB.....:', error.message)
-    })
+const mongoose=require('mongoose')
 
 const noteSchema = new mongoose.Schema({
     name: {
@@ -45,19 +32,3 @@ noteSchema.set('toJSON', {
 })
 module.exports = mongoose.model('Note', noteSchema)
 
-// const person = new Note({
-//   name: process.argv[3],
-//   id: process.argv[4],
-//   ph_number: process.argv[5],
-// })
-// person.save().then(result => {
-//     console.log('note saved!')
-//     console.log(person)
-//     mongoose.connection.close()
-//   })
-// persons.find({}).then(result => {
-//     result.forEach(person => {
-//       console.log(person)
-//     })
-//     mongoose.connection.close()
-//   })
