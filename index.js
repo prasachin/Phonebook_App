@@ -19,10 +19,9 @@ const errorHandler = (error, request, response, next) => {
   if (error.name === 'CastError') {
     return response.status(400).send({ error: 'malformatted id' })
   }
-  else if (error.name === 'ValidationError') { 
+  else if (error.name === 'ValidationError') {
     return response.status(400).json({ error: error.message })
-   }
-
+  }
   next(error)
 }
 const unknownEndpoint = (request, response) => {
@@ -34,9 +33,9 @@ app.use(express.json())
 app.use(requestLogger)
 app.use(express.static('build'))
 
-Note.find({}).then(notes => {
-  const persons = notes
-})
+// Note.find({}).then(notes => {
+//   const persons = notes
+// })
 const dt = new Date()
 app.get('/info', (request, response) => {
   Note.find({}).then(notes => {
@@ -64,9 +63,9 @@ app.get('/api/persons/:id', (request, response, next) => {
 })
 app.delete('/api/persons/:id', (request, response, next) => {
   Note.findByIdAndDelete(request.params.id)
-    .then(result => {
+    .then(
       response.status(204).end()
-    })
+    )
     .catch(error => next(error))
 })
 app.post('/api/persons', (request, response) => {
@@ -90,7 +89,7 @@ app.use(unknownEndpoint)
 app.use(errorHandler)
 
 const PORT = process.env.PORT
-const MONGODB_URI = process.env.MONGODB_URI
+// const MONGODB_URI = process.env.MONGODB_URI
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
 })

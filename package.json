@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint .",
     "build:ui": "rm -rf dist && cd ../deploytonet && npm run build && cp -r dist ../PART3",
     "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && git push",
     "start": "node index.js",
@@ -20,6 +21,7 @@
     "validator": "^13.11.0"
   },
   "devDependencies": {
+    "eslint": "^8.56.0",
     "nodemon": "^3.0.1"
   }
 }
