@@ -46,7 +46,7 @@ personsRoutes.delete('/', (request, response, next) => {
         .catch(error => next(error))
 })
 const dt = new Date()
-personsRoutes.get('/info', (request, response) => {
+personsRoutes.get('/all/info', (request, response) => {
     Note.find({}).then(notes => {
         const p = notes.length
         response.send(`<h1>Total Number of the element in this Phonebook is : ${p}</h1> <h2> ${dt}<h2> `)
